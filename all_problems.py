@@ -97,16 +97,3 @@ for i in range(2, value+1):
     solved_problem_tags(user_url + str(i))
     print('getting user data', (i / value) * 100, '% completed')
     i = i+1
-
-
-
-
-
-
-
-#Dict = {}
-#Dict = {'123':'geek', '321':'for'}
-#print(Dict['321'])
-
-#if '12/E' in Dict:
-#    print(Dict['12/E'])

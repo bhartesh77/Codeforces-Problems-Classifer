@@ -1,6 +1,6 @@
 1494/F-constructive algorithms/graphs/implementation/
 1494/E-constructive algorithms/data structures/graphs/hashing/
-1494/D-constructive algorithms/data structures/dfs and similar/divide and conquer/dsu/greedy/implementation/sortings/trees/
+1494/D-constructive algorithms/data structures/dfs and similar/divide and conquer/dsu/greedy/sortings/trees/
 1494/C-binary search/dp/greedy/implementation/two pointers/
 1494/B-bitmasks/brute force/greedy/implementation/
 1494/A-bitmasks/brute force/implementation/

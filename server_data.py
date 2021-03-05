@@ -46,7 +46,7 @@ upperlimit = get_max_page(url_problemset)
 
 for i in range(1,upperlimit+1):
     single_page(url + str(i))
-    print('getting data', (i / 68) * 100, '% completed')
+    print('getting data', "{0:.2f}".format((i / 68) * 100), '% completed')
     i = i+1
 
 f.close()

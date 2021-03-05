@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
-user_data = {}
+problem_count = {}
 problems = {}
 
 url = 'https://codeforces.com/problemset/page/'
@@ -21,7 +21,7 @@ def load_server_problems():
                 problem_tag = problem_tag + c
             if flag == 0:
                 tags = tags + c
-        problems[problem_tag] = tags
+        problems[problem_tag] = tags[1:]
 
 
 def solved_problem_tags(url):
@@ -43,8 +43,18 @@ def solved_problem_tags(url):
                 # print(final_tag)
                 if final_tag in problems:
                     count_attempted_problems = count_attempted_problems + 1
-                    # print(final_tag, problems[final_tag])
-                    user_data[final_tag] = problems[final_tag]
+
+                    single_tag = ''
+                    for ch in problems[final_tag]:
+                        if ch == '/':
+                            if single_tag in problem_count:
+                                problem_count[single_tag] += 1
+                            else:
+                                problem_count[single_tag] = 1
+                            single_tag = ''
+                        else:
+                            single_tag = single_tag + ch
+
         except:
             pass
     return count_attempted_problems
@@ -76,16 +86,23 @@ username = input()
 user_url1 = user_url + username + '/page/1'
 user_url = user_url + username
 
+
 # to get last page number
 value = get_user_submission_last_page(user_url1, username)
 
 # to get user data
 count_attempted_problems = solved_problem_tags(user_url)  # to get data of first page
 user_url = user_url + '/page/'
+print('getting user data ->', "{0:.2f}".format(abs(1 / value) * 100), '% completed')
 
 for i in range(2, value + 1):
     count_attempted_problems = count_attempted_problems + solved_problem_tags(user_url + str(i))
-    print('getting user data', (i / value) * 100, '% completed')
+    print('getting user data ->', "{0:.2f}".format((i / value) * 100), '% completed')
     i = i + 1
 
-print('Total attempted problems: ', count_attempted_problems)
+print('\nTotal attempted problems: ', count_attempted_problems)
+print('')
+
+# to print count
+for problem_type in problem_count:
+    print(problem_type, '->', problem_count[problem_type])
